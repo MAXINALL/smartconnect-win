@@ -1,0 +1,15 @@
+/target
+*.exe
+*.pdb
+*.log
+temp_uploads/
+webview2_data/
+*.WebView2/
+cert.pem
+key.pem
+identity.json
+paired.json
+settings.json
+pair_qr.png
+pair_qr.html
+icon.ico

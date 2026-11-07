@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>联想超级互联</title>
+  <link rel="stylesheet" href="/style.css?v=4">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 原子设备状态组件 (单层卡片，内部零嵌套盒子) -->
+    <header class="atomic-card device-card">
+      <div class="device-info-left">
+        <div class="device-avatar">
+          <svg class="icon-svg-lg" viewBox="0 0 24 24">
+            <rect x="4" y="2" width="16" height="20" rx="3" ry="3"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+          </svg>
+        </div>
+        <div class="device-meta">
+          <div class="device-name" id="deviceName">联想小新平板Pro GT</div>
+          <div class="device-status-badge" id="statusBadge" title="点击自动重连">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="statusLabel">正在检测连接...</span>
+          </div>
+        </div>
+      </div>
+      <div class="device-actions-right">
+        <button class="action-btn-bare" id="reconnectBtn" title="唤醒并重连平板" aria-label="重连平板">
+          <svg class="icon-svg-sm" viewBox="0 0 24 24">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+        </button>
+        <button class="action-btn-bare" id="openQrBtn" title="扫码配对" aria-label="扫码连接">
+          <svg class="icon-svg-sm" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+          </svg>
+        </button>
+        <button class="action-btn-bare" id="openSettingsBtn" title="设置" aria-label="设置">
+          <svg class="icon-svg-sm" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- 顶部分段导航 (透明容器，单层胶囊) -->
+    <nav class="pill-switcher">
+      <button class="pill-item active" data-tab="transferTab">跨端互传</button>
+      <button class="pill-item" data-tab="browserTab">平板存储</button>
+    </nav>
+
+    <!-- 视图 1：跨端互传 (原子工作台双组件满屏布局) -->
+    <main class="tab-content active" id="transferTab">
+      <!-- 原子快传工作台 (单层大卡片，内部无嵌套背景盒) -->
+      <section class="atomic-card transfer-workbench">
+        <div class="dropzone-trigger" id="dropzone">
+          <div class="dropzone-left">
+            <div class="dropzone-icon-wrap">
+              <svg class="icon-svg-lg" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <div class="dropzone-text-wrap">
+              <div class="dropzone-title">发送文件到平板</div>
+              <div class="dropzone-hint">点击选择多文件 · 支持拖入或右键发送</div>
+            </div>
+          </div>
+          <span class="dropzone-action-label">选择文件</span>
+          <input type="file" multiple class="file-input-hidden" id="fileInput">
+        </div>
+
+        <div class="workbench-subbar">
+          <span class="workbench-subtitle">传输动态</span>
+          <button class="text-action-btn" id="clearTransfersBtn">清空记录</button>
+        </div>
+
+        <div class="transfer-list" id="transferList">
+          <div class="transfer-item empty-row">
+            <div class="transfer-left">
+              <div class="transfer-file-icon">
+                <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+              </div>
+              <div class="transfer-details">
+                <div class="transfer-filename">暂无传输任务</div>
+                <div class="transfer-status">大文件流式直传已就绪</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 随身剪贴板原子便签 (卡片本身即便签纸，内部零嵌套盒子) -->
+      <section class="atomic-card clipboard-note">
+        <div class="note-header">
+          <div class="note-title-group">
+            <span class="note-title">随身剪贴板</span>
+            <span class="note-badge">双向自动同步</span>
+          </div>
+          <label class="toggle-switch" title="自动同步开关">
+            <input type="checkbox" id="autoClipToggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <textarea class="clipboard-textarea" id="clipText" placeholder="直接输入或粘贴文本，按 Ctrl+Enter 立即推送到平板..." rows="3"></textarea>
+
+        <div class="note-footer">
+          <span class="note-hint" id="clipSyncHint">平板复制文本会自动同步至此处</span>
+          <div class="note-actions">
+            <button class="text-action-btn secondary" id="readPcClipBtn">读取电脑</button>
+            <button class="text-action-btn primary" id="sendClipBtn">推送平板</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 视图 2：平板存储 (自适应满屏高度，底部零截断) -->
+    <main class="tab-content" id="browserTab">
+      <section class="category-grid">
+        <div class="category-tile" data-category="/sdcard/DCIM/Camera">
+          <div class="category-icon">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="3" ry="3"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
+          <div class="category-meta">
+            <div class="category-title">相册</div>
+            <div class="category-sub">相机照片与视频</div>
+          </div>
+        </div>
+        <div class="category-tile" data-category="/sdcard/Download">
+          <div class="category-icon">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </div>
+          <div class="category-meta">
+            <div class="category-title">下载</div>
+            <div class="category-sub">接收与下载目录</div>
+          </div>
+        </div>
+        <div class="category-tile" data-category="/sdcard/Pictures/Screenshots">
+          <div class="category-icon">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="category-meta">
+            <div class="category-title">截图</div>
+            <div class="category-sub">屏幕截取图像</div>
+          </div>
+        </div>
+        <div class="category-tile" data-category="/sdcard">
+          <div class="category-icon">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <div class="category-meta">
+            <div class="category-title">全部</div>
+            <div class="category-sub">内部共享存储</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 平板文件浏览原子卡 (单层卡片满屏伸展，内部列表项透明无嵌套盒) -->
+      <section class="atomic-card browser-workbench">
+        <div class="browser-nav-bar">
+          <button class="nav-back-btn" id="navBackBtn">
+            <svg class="icon-svg-sm" viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            上一级
+          </button>
+          <span class="nav-path-text" id="navPathText">/sdcard</span>
+          <button class="text-action-btn" id="refreshBrowserBtn">刷新</button>
+        </div>
+
+        <div class="file-list-box" id="browserFileList">
+          <div class="file-row">
+            <div class="file-row-left">
+              <svg class="icon-svg-sm" viewBox="0 0 24 24">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <div class="file-row-meta">
+                <span class="file-row-name">正在加载存储...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 弹窗 1：扫码配对 -->
+    <div class="modal-overlay" id="qrModal">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <div class="modal-title">扫码连接</div>
+          <button class="modal-close-btn" id="closeQrModalBtn" aria-label="关闭">
+            <svg class="icon-svg-sm" viewBox="0 0 24 24">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="qr-container">
+          <img src="/api/pair-qr.png" alt="配对二维码" class="qr-image" id="qrImage">
+          <div class="qr-desc">在联想平板上打开“超级互联”<br>点击右上角“扫一扫”即可连接</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗 2：设置 -->
+    <div class="modal-overlay" id="settingsModal">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <div class="modal-title">设置</div>
+          <button class="modal-close-btn" id="closeSettingsModalBtn" aria-label="关闭">
+            <svg class="icon-svg-sm" viewBox="0 0 24 24">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="settings-group">
+          <div class="setting-row">
+            <div class="setting-label-wrap">
+              <span class="setting-title">关闭窗口时</span>
+              <span class="setting-desc">主窗口右上角关闭动作</span>
+            </div>
+            <div class="segmented-choice" id="closeActionChoice">
+              <button class="segmented-opt" data-val="exit">退出</button>
+              <button class="segmented-opt active" data-val="tray">托盘</button>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label-wrap">
+              <span class="setting-title">剪贴板自动同步</span>
+              <span class="setting-desc">电脑与平板复制内容双向同步</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="settingAutoClip">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label-wrap">
+              <span class="setting-title">右键发送菜单</span>
+              <span class="setting-desc">资源管理器右键发送到平板</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="settingContextMenu">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label-wrap">
+              <span class="setting-title">接收文件位置</span>
+              <span class="setting-desc" id="downloadPathLabel">D:\Downland</span>
+            </div>
+            <div class="setting-btn-group">
+              <button class="text-action-btn" id="changeDownloadDirBtn">更改</button>
+              <button class="text-action-btn" id="openDownloadDirBtn">打开</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-msg" id="toast"></div>
+  </div>
+
+  <script src="/app.js?v=4"></script>
+</body>
+</html>
